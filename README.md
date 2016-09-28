@@ -1,4 +1,4 @@
-# AlternatesCoves
+# AlternatesCovers
 Processing Sketches.
 Manolo Guerrero 2016.
 
