@@ -1,20 +1,29 @@
-import processing.pdf.*; 
-float vel=10;
+import ddf.minim.*;
 
+
+//import processing.pdf.*; 
+float vel=30;
+
+Minim minim;
+AudioPlayer groove;
 
 void setup () {
-  beginRecord(PDF, "pdf/tour_#####.pdf");
   size (600, 600);  
   textSize(16);
+  
+   minim = new Minim(this);
+  groove = minim.loadFile("tour.mp3", 1024);
+  groove.loop();
 }
 
 
 void draw() {
-  frameRate(vel);
+  //frameRate(vel);
   background (231);
-  float s= random(200);
+  
+ 
+  float s = groove.left.level()*height;
   noStroke();
-
   // Shape 1
   fill(#006cfe, 175);
   beginShape();
@@ -65,11 +74,4 @@ void draw() {
   text("K    R    A    F    T    W    E    R    K", 189, 410);
   text("T    O    U    R         T    H    E         F    R    A    N    C    E", 308, 450);
   text("2     0     1     6", 519, 34);
-  
-  
-  /*println(frameCount);
-  if (frameCount < 60) {
-  saveFrame("img/tour-######.tif");} else { exit();}
-  */
-endRecord();
-}
+ } 

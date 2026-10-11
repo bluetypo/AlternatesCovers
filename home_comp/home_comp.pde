@@ -1,10 +1,16 @@
-import processing.pdf.*; 
-float vel=10;
+import ddf.minim.*;
+float vel=30;
+
+Minim minim;
+AudioPlayer groove;
 
 void setup () {
-  beginRecord(PDF, "pdf/home_#####.pdf");
   size (600, 600);
   noStroke();
+
+  minim = new Minim(this);
+  groove = minim.loadFile("home.mp3", 1024);
+  groove.loop();
 }
 
 void draw() {
@@ -18,7 +24,8 @@ void draw() {
   color c6=#ec7566;
   
   frameRate(vel);
-  float s= random(80);
+  // nivel de audio mapeado al rango 0-80 que antes era random(80)
+  float s= constrain(groove.left.level()*height*0.5, 0, 80);
   
   background(c1);
 
@@ -79,7 +86,6 @@ vertex(344,367+(s*.25));
   text("H    O    M    E", 381, 282);
   text("C    O    M    P    U    T    E    R", 337, 310);
   text("2     0     1     6", 379, 430);
-  endRecord();
   
   //saveFrame("img/home-####.tif");
 }
